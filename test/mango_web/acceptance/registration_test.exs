@@ -18,7 +18,7 @@ find_within_element(form, :name, "registration[phone]")
 |> fill_field("1111")
 
 find_within_element(form, :name, "registration[residence_area]")
-|> fill_field("Area 1")
+|> input_into_field("Area 1")
 
 find_within_element(form, :name, "registration[password]")
 |> fill_field("password")
