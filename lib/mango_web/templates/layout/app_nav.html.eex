@@ -10,6 +10,10 @@
       <a class="navbar-brand" href="/">
         <img src="/images/logo.png" alt="logo"> Mango
       </a>
+      <ul class="nav navbar-nav">
+        <li><%= link "Fruits", to: category_path(@conn, :show, "fruits") %></li>
+        <li><%= link "Vegetables", to: category_path(@conn, :show, "vegetables") %></li>
+      </ul>
     </div>
   </div>
 </nav>
