@@ -4,7 +4,7 @@
     </span>
     <h2>
       <div class="product-name"><%= @product.name %></div>
-      <span class="pull-right">
+      <span class="pull-right">&dollar;
         <small class="product-price">
           <%= @product.price %>
         </small>
