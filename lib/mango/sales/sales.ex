@@ -33,4 +33,11 @@ defmodule Mango.Sales do
     |> Order.changeset(attrs)
     |> Repo.update
   end
+
+  def confirm_order(%Order{} = order, attrs) do
+    attrs = Map.put(attrs, "status", "Confirmed")
+    order
+    |> Order.checkout_changeset(attrs)
+    |> Repo.update()
+  end
 end

@@ -1,22 +1,26 @@
 defmodule MangoWeb.Router do
   use MangoWeb, :router
 
+  pipeline :frontend do
+    plug MangoWeb.Plugs.LoadCustomer
+    plug MangoWeb.Plugs.FetchCart
+  end
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug MangoWeb.Plugs.LoadCustomer
-    plug MangoWeb.Plugs.FetchCart
   end
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
+  # Unauthenticated scope
   scope "/", MangoWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, :frontend]
 
     get "/", PageController, :index
     get "/categories/:name", CategoryController, :show
@@ -26,15 +30,20 @@ defmodule MangoWeb.Router do
 
     get "/login", SessionController, :new
     post "/login", SessionController, :create
-    get "/logout", SessionController, :delete
 
     post "/cart", CartController, :add
     get "/cart", CartController, :show
     put "/cart", CartController, :update
+    patch "/cart", CartController, :update
+
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", MangoWeb do
-  #   pipe_through :api
-  # end
+  # Authenticated scope
+  scope "/", MangoWeb do
+    pipe_through [:browser, :frontend, MangoWeb.Plugs.AuthenticateCustomer]
+
+    get "/logout", SessionController, :delete
+    get "/checkout", CheckoutController, :edit
+    put "/checkout/confirm", CheckoutController, :update
+  end
 end
