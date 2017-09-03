@@ -6,10 +6,10 @@ defmodule MangoWeb.LoginHelpers do
 
     form = find_element(:id, "session-form")
     find_within_element(form, :name, "session[email]")
-    |> fill_field("john@example.com")
+    |> fill_field(email)
 
     find_within_element(form, :name, "session[password]")
-    |> fill_field("secret")
+    |> fill_field(password)
 
     find_within_element(form, :tag, "button")
     |> click

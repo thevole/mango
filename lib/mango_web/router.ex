@@ -19,6 +19,10 @@ defmodule MangoWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :admin do
+    plug MangoWeb.Plugs.AdminLayout
+  end
+
   # Unauthenticated scope
   scope "/", MangoWeb do
     pipe_through [:browser, :frontend]
@@ -50,5 +54,11 @@ defmodule MangoWeb.Router do
     put "/checkout/confirm", CheckoutController, :update
 
     resources "/tickets", TicketController, except: [:edit, :update, :delete]
+  end
+
+  scope "/admin", MangoWeb.Admin, as: :admin do
+    pipe_through [:browser, :admin]
+    
+    resources "/users", UserController
   end
 end
