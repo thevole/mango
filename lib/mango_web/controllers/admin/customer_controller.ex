@@ -1,7 +1,7 @@
 defmodule MangoWeb.Admin.CustomerController do
   use MangoWeb, :controller
 
-  alias Mango.{CRM, Sales}
+  alias Mango.CRM
 
   def index(conn, _params) do
     customers = CRM.list_customers()

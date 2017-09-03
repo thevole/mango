@@ -10,7 +10,7 @@ config :mango,
   ecto_repos: [Mango.Repo]
 
 config :mango, MangoWeb.Gettext,
-  default_locale: "fr"
+  default_locale: "en"
 
 
 # Configures the endpoint
