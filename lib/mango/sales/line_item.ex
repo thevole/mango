@@ -1,6 +1,5 @@
 defmodule Mango.Sales.LineItem do
   use Ecto.Schema
-
   import Ecto.Changeset
   alias Mango.Catalog
   alias Mango.Sales.LineItem
@@ -46,7 +45,7 @@ defmodule Mango.Sales.LineItem do
 
   defp set_delete(changeset) do
     if get_change(changeset, :delete) do
-      %{changeset | action: :delete}
+      %{changeset| action: :delete}
     else
       changeset
     end

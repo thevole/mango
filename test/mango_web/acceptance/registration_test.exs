@@ -11,26 +11,25 @@ defmodule MangoWeb.Acceptance.RegistrationTest do
     find_within_element(form, :name, "registration[name]")
     |> fill_field("John")
 
-find_within_element(form, :name, "registration[email]")
-|> fill_field("john@example.com")
+    find_within_element(form, :name, "registration[email]")
+    |> fill_field("john@example.com")
 
-find_within_element(form, :name, "registration[phone]")
-|> fill_field("1111")
+    find_within_element(form, :name, "registration[phone]")
+    |> fill_field("1111")
 
-find_within_element(form, :name, "registration[residence_area]")
-|> input_into_field("Area 1")
+    find_element(:css, "#registration_residence_area option[value='Area 1']") |> click
 
-find_within_element(form, :name, "registration[password]")
-|> fill_field("password")
+    find_within_element(form, :name, "registration[password]")
+    |> fill_field("password")
 
-find_within_element(form, :tag, "button")
-|> click
+    find_within_element(form, :tag, "button")
+    |> click
 
-assert current_path() == "/"
-message = find_element(:class, "alert")
-          |> visible_text()
+    assert current_path() == "/"
+    message = find_element(:class, "alert")
+              |> visible_text()
 
-assert message == "Registration successful"
+    assert message == "Registration successful"
   end
 
   test "shows error messages on invalid data" do

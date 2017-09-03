@@ -55,5 +55,4 @@ defmodule Mango.CRMTest do
     customer2 = CRM.get_customer_by_credentials(valid_attrs)
     assert customer1.id == customer2.id
   end
-
 end

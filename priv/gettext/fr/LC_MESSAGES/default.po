@@ -9,3 +9,7 @@
 msgid ""
 msgstr ""
 "Language: fr\n"
+
+#: lib/mango/web/templates/page/index.html.eex:1
+msgid "Seasonal Products"
+msgstr "Spécialités saisonnières"

@@ -1,9 +1,8 @@
-<h1 class="page-title"><%= dngettext("menu", "Seasonal product", "Seasonal products", Enum.count(@seasonal_products)) %></h1>
-
+<h1 class="page-title"><%= gettext "Seasonal Products" %></h1>
 <div class="row">
-<%= for product <- @seasonal_products do %>
-  <div class="col-md-4">
-    <%= render MangoWeb.ProductView, "product_card.html", product: product, conn: @conn %>
-  </div>
-<% end %>
+  <%= for product <- @seasonal_products do %>
+    <div class="col-md-4">
+      <%= render MangoWeb.ProductView, "product_card.html", conn: @conn, product: product %>
+    </div>
+  <% end %>
 </div>

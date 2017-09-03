@@ -5,10 +5,13 @@ defmodule MangoWeb.Acceptance.HomepageTest do
   hound_session()
 
   setup do
+    ## GIVEN ##
+    # There are two products Apple and Tomato priced 100 and 50 respectively
+    # Where Apple being the only seasonal product
     alias Mango.Repo
     alias Mango.Catalog.Product
-    Repo.insert %Product{name: "Tomato", price: 50, is_seasonal: false, category: "vegetables"}
-    Repo.insert %Product{name: "Apple", price: 100, is_seasonal: true, category: "fruits"}
+    Repo.insert %Product{name: "Tomato", price: 50, is_seasonal: false}
+    Repo.insert %Product{name: "Apple", price: 100, is_seasonal: true}
     :ok
   end
 
@@ -24,7 +27,7 @@ defmodule MangoWeb.Acceptance.HomepageTest do
     ## THEN ##
     # I expect the page title to be "Seasonal products"
     page_title = find_element(:css, ".page-title") |> visible_text()
-    assert page_title == "Seasonal product"
+    assert page_title == "Seasonal Products"
 
     # And I expect Apple in the product displayed
     product = find_element(:css, ".product")

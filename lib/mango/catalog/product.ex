@@ -10,7 +10,6 @@ defmodule Mango.Catalog.Product do
     field :category, :string
     field :pack_size, :string
 
-
     timestamps()
   end
 end

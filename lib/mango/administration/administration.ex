@@ -1,6 +1,6 @@
 defmodule Mango.Administration do
   @moduledoc """
-  The Administration context.
+  The boundary for the Administration system.
   """
 
   import Ecto.Query, warn: false
@@ -8,6 +8,10 @@ defmodule Mango.Administration do
 
   alias Mango.Administration.User
 
+  def get_admin_by_email(email) do
+    User |> Repo.get_by(email: email)
+  end
+  
   @doc """
   Returns the list of users.
 
@@ -100,9 +104,5 @@ defmodule Mango.Administration do
   """
   def change_user(%User{} = user) do
     User.changeset(user, %{})
-  end
-
-  def get_admin_by_email(email) do
-    User |> Repo.get_by(email: email)
   end
 end

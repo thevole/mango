@@ -1,8 +1,8 @@
 <h1 class="page-title"><%= title_case @name %></h1>
-<div>
+<div class="row">
   <%= for product <- @products do %>
     <div class="col-md-4">
-      <%= render MangoWeb.ProductView, "product_card.html", product: product, conn: @conn %>
+      <%= render MangoWeb.ProductView, "product_card.html", conn: @conn, product: product %>
     </div>
   <% end %>
 </div>

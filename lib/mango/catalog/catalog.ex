@@ -2,6 +2,8 @@ defmodule Mango.Catalog do
   alias Mango.Catalog.Product
   alias Mango.Repo
 
+  def get_product!(id), do: Product |> Repo.get!(id)
+
   def list_products do
     Product
     |> Repo.all
@@ -9,14 +11,11 @@ defmodule Mango.Catalog do
 
   def list_seasonal_products do
     list_products()
-    |> Enum.filter(&(&1.is_seasonal == true))
+    |> Enum.filter(fn(product) -> product.is_seasonal == true end)
   end
 
   def get_category_products(name) do
     list_products()
-    |> Enum.filter(&(&1.category == name))
+    |> Enum.filter(fn(product) -> product.category == name end)
   end
-
-  def get_product!(id), do: Product |> Repo.get!(id)
-
 end

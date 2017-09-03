@@ -2,8 +2,6 @@ defmodule MangoWeb.Acceptance.SessionTest do
   use Mango.DataCase
   use Hound.Helpers
 
-  import MangoWeb.LoginHelpers, only: [login: 2]
-
   hound_session()
 
   setup do
@@ -23,7 +21,17 @@ defmodule MangoWeb.Acceptance.SessionTest do
 
   test "successful login for valid credential" do
     ## When ##
-    login("john@example.com", "secret")
+    navigate_to("/login")
+
+    form = find_element(:id, "session-form")
+    find_within_element(form, :name, "session[email]")
+    |> fill_field("john@example.com")
+
+    find_within_element(form, :name, "session[password]")
+    |> fill_field("secret")
+
+    find_within_element(form, :tag, "button")
+    |> click
 
     ## THEN ##
     assert current_path() == "/"
@@ -42,9 +50,9 @@ defmodule MangoWeb.Acceptance.SessionTest do
     find_within_element(form, :tag, "button")
     |> click
 
-## THEN ##
-assert current_path() == "/login"
-message = find_element(:class, "alert-danger") |> visible_text()
-assert message == "Invalid username/password combination"
+    ## THEN ##
+    assert current_path() == "/login"
+    message = find_element(:class, "alert-danger") |> visible_text()
+    assert message == "Invalid username/password combination"
   end
 end

@@ -5,7 +5,7 @@ defmodule Mango.Repo.Migrations.CreateUsers do
     create table(:users) do
       add :name, :string
       add :email, :citext
-      add :home, :string
+      add :phone, :string
 
       timestamps()
     end

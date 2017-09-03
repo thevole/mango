@@ -5,7 +5,7 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
-      <th>Home</th>
+      <th>Phone</th>
 
       <th></th>
     </tr>
@@ -15,7 +15,7 @@
     <tr>
       <td><%= user.name %></td>
       <td><%= user.email %></td>
-      <td><%= user.home %></td>
+      <td><%= user.phone %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: admin_user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>

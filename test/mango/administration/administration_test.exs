@@ -6,9 +6,9 @@ defmodule Mango.AdministrationTest do
   describe "users" do
     alias Mango.Administration.User
 
-    @valid_attrs %{email: "some email", home: "some home", name: "some name"}
-    @update_attrs %{email: "some updated email", home: "some updated home", name: "some updated name"}
-    @invalid_attrs %{email: nil, home: nil, name: nil}
+    @valid_attrs %{email: "some email", name: "some name", phone: "some phone"}
+    @update_attrs %{email: "some updated email", name: "some updated name", phone: "some updated phone"}
+    @invalid_attrs %{email: nil, name: nil, phone: nil}
 
     def user_fixture(attrs \\ %{}) do
       {:ok, user} =
@@ -32,8 +32,8 @@ defmodule Mango.AdministrationTest do
     test "create_user/1 with valid data creates a user" do
       assert {:ok, %User{} = user} = Administration.create_user(@valid_attrs)
       assert user.email == "some email"
-      assert user.home == "some home"
       assert user.name == "some name"
+      assert user.phone == "some phone"
     end
 
     test "create_user/1 with invalid data returns error changeset" do
@@ -45,8 +45,8 @@ defmodule Mango.AdministrationTest do
       assert {:ok, user} = Administration.update_user(user, @update_attrs)
       assert %User{} = user
       assert user.email == "some updated email"
-      assert user.home == "some updated home"
       assert user.name == "some updated name"
+      assert user.phone == "some updated phone"
     end
 
     test "update_user/2 with invalid data returns error changeset" do

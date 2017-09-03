@@ -36,7 +36,7 @@ defmodule MangoWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_mango_key",
-    signing_salt: "BWweKClx"
+    signing_salt: "05nThJDV"
 
   plug MangoWeb.Router
 

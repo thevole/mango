@@ -9,10 +9,14 @@ use Mix.Config
 config :mango,
   ecto_repos: [Mango.Repo]
 
+config :mango, MangoWeb.Gettext,
+  default_locale: "fr"
+
+
 # Configures the endpoint
 config :mango, MangoWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "snFOMhwf7xFpJ/0OLgS7YiHHF8bVssRviQKHG5h4pn4PT4WOio8LAIJDtG8J5ouz",
+  secret_key_base: "flomZNY5xAsro0R9W+XyaxBHfZUPPALvZszBWuIRCaO2NgZ9WY+I3I0VcoNcnPFR",
   render_errors: [view: MangoWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Mango.PubSub,
            adapter: Phoenix.PubSub.PG2]
@@ -21,9 +25,6 @@ config :mango, MangoWeb.Endpoint,
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
-
-config :mango, MangoWeb.Gettext,
-  default_locale: "en"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

@@ -5,7 +5,7 @@ defmodule Mango.Repo.Migrations.CreateTickets do
     create table(:tickets) do
       add :subject, :string
       add :message, :text
-      add :status, :string
+      add :status, :text
       add :customer_id, references(:customers, on_delete: :nothing)
 
       timestamps()

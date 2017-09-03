@@ -4,8 +4,8 @@ defmodule Mango.CatalogTest do
   alias Mango.Catalog.Product
 
   setup do
-    Repo.insert %Product{name: "Tomato", price: 55, sku: "A123", is_seasonal: false, category: "vegetables"}
-    Repo.insert %Product{name: "Apple", price: 75, sku: "B232", is_seasonal: true, category: "fruits"}
+    Repo.insert %Product{ name: "Tomato", price: 55, sku: "A123", is_seasonal: false, category: "vegetables" }
+    Repo.insert %Product{ name: "Apple", price: 75, sku: "B232", is_seasonal: true, category: "fruits" }
     :ok
   end
 
@@ -16,14 +16,15 @@ defmodule Mango.CatalogTest do
     assert p2.name == "Apple"
   end
 
-  test "list_seasonal_products/0 returns all seasonal products" do
+  test "list_seasonal_products/0 return all seasonal products" do
     [product = %Product{}] = Catalog.list_seasonal_products
 
     assert product.name == "Apple"
   end
 
-  test "get_category_products/1 returns products for the given category" do
+  test "get_category_products/1 returns products of the given category" do
     [product = %Product{}] = Catalog.get_category_products("fruits")
+
     assert product.name == "Apple"
   end
 end

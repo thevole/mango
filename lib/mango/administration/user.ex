@@ -6,8 +6,8 @@ defmodule Mango.Administration.User do
 
   schema "users" do
     field :email, :string
-    field :home, :string
     field :name, :string
+    field :phone, :string
 
     timestamps()
   end
@@ -15,8 +15,8 @@ defmodule Mango.Administration.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:name, :email, :home])
-    |> validate_required([:name, :email, :home])
+    |> cast(attrs, [:name, :email, :phone])
+    |> validate_required([:name, :email, :phone])
     |> unique_constraint(:email)
   end
 end

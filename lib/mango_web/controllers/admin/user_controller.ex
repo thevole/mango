@@ -2,16 +2,16 @@ defmodule MangoWeb.Admin.UserController do
   use MangoWeb, :controller
 
   alias Mango.Administration
-  alias Mango.Administration.User
 
   def index(conn, _params) do
     users = Administration.list_users()
     conn
+    |> put_layout("admin_app.html")
     |> render("index.html", users: users)
   end
 
   def new(conn, _params) do
-    changeset = Administration.change_user(%User{})
+    changeset = Administration.change_user(%Mango.Administration.User{})
     render(conn, "new.html", changeset: changeset)
   end
 

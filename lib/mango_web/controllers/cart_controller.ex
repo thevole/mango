@@ -6,11 +6,10 @@ defmodule MangoWeb.CartController do
     cart = conn.assigns.cart
     case Sales.add_to_cart(cart, cart_params) do
       {:ok, cart} ->
+        render(conn, "add.json", cart: cart, cart_params: cart_params)
+      {:error, _} ->
         conn
-        |> render("add.json", cart: cart, cart_params: cart_params)
-      {:error, %Ecto.Changeset{} = _changeset} ->
-        conn
-        |> put_flash(:error, "Error adding product to cart")
+        |> put_flash(:info, "Error adding product to cart")
         |> redirect(to: page_path(conn, :index))
     end
   end
@@ -30,9 +29,8 @@ defmodule MangoWeb.CartController do
         |> redirect(to: cart_path(conn, :show))
       {:error, _} ->
         conn
-        |> put_flash(:error, "Error updating cart")
+        |> put_flash(:info, "Error updating cart")
         |> redirect(to: cart_path(conn, :show))
-
     end
   end
 end

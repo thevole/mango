@@ -13,8 +13,8 @@
   </li>
 
   <li>
-    <strong>Home:</strong>
-    <%= @user.home %>
+    <strong>Phone:</strong>
+    <%= @user.phone %>
   </li>
 
 </ul>
