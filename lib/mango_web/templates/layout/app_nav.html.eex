@@ -32,6 +32,23 @@
           <li><%= link "Register", to: registration_path(@conn, :new), class: "nav-link" %></li>
           <li><%= link "Sign in", to: session_path(@conn, :new), class: "nav-link" %></li>
         <% end %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-globe"></i> I18n
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="<%= get_active_locale_class("en") %>">
+              <a href="?locale=en">English</a>
+            </li>
+            <li class="<%= get_active_locale_class("fr") %>">
+              <a href="?locale=fr">Français</a>
+            </li>
+            <li class="<%= get_active_locale_class("de") %>">
+              <a href="?locale=de">Deutsche</a>
+            </li>
+          </ul>
+      </li>
       </ul>
       <!-- Upto here -->
 
