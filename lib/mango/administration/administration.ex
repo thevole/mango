@@ -101,4 +101,8 @@ defmodule Mango.Administration do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
+
+  def get_admin_by_email(email) do
+    User |> Repo.get_by(email: email)
+  end
 end

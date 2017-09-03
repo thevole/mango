@@ -60,5 +60,8 @@ defmodule MangoWeb.Router do
     pipe_through [:browser, :admin]
     
     resources "/users", UserController
+    get "/login", SessionController, :new
+    post "/sendlink", SessionController, :send_link
+    get "/magiclink", SessionController, :create
   end
 end
