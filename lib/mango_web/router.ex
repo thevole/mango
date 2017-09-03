@@ -42,6 +42,8 @@ defmodule MangoWeb.Router do
   scope "/", MangoWeb do
     pipe_through [:browser, :frontend, MangoWeb.Plugs.AuthenticateCustomer]
 
+    get "/orders", OrderController, :index
+
     get "/logout", SessionController, :delete
     get "/checkout", CheckoutController, :edit
     put "/checkout/confirm", CheckoutController, :update

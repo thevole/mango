@@ -2,6 +2,7 @@ defmodule Mango.Sales.Order do
   use Ecto.Schema
   import Ecto.Changeset
   alias Mango.Sales.{Order, LineItem}
+  alias Mango.CRM.Customer
 
 
   schema "orders" do
@@ -10,10 +11,11 @@ defmodule Mango.Sales.Order do
     field :total, :decimal
 
     field :comments, :string
-    field :customer_id, :integer
     field :customer_name, :string
     field :email, :string
     field :residence_area, :string
+
+    belongs_to :customer, Customer
 
     timestamps()
   end

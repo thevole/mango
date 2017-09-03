@@ -28,4 +28,10 @@ defmodule Mango.CRM do
   end
 
   def get_customer(id), do: Repo.get(Customer, id)
+
+  def get_orders_for_customer(customer = %Customer{}) do
+    customer
+    |> Ecto.assoc(:orders)
+    |> Repo.all
+  end
 end
